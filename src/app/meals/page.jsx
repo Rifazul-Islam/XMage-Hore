@@ -1,4 +1,3 @@
-import Meals from "@/components/Meals/Meals";
 import React from "react";
 
 const MealsPage = () => {
@@ -9,9 +8,7 @@ const MealsPage = () => {
       </h2>
       <p className="text-lg mt-2 ">This is Meals is helth verybody.</p>
 
-      <div>
-        <Meals></Meals>
-      </div>
+      <div>Some Time Data Fatch</div>
     </div>
   );
 };
