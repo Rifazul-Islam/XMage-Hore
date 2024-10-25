@@ -1,4 +1,4 @@
-import React from "react";
+import Meals from "@/components/Meals/Meals";
 
 const MealsPage = () => {
   return (
@@ -8,7 +8,9 @@ const MealsPage = () => {
       </h2>
       <p className="text-lg mt-2 ">This is Meals is helth verybody.</p>
 
-      <div>Some Time Data Fatch</div>
+      <div>
+        <Meals></Meals>
+      </div>
     </div>
   );
 };

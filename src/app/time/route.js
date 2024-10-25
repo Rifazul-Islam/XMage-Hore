@@ -1,7 +1,7 @@
 // Caching system in Next.js
 // export const dynamic = "force-dynamic";
-export async function GET() {
-  return Response.json({
-    currentTime: new Date().toLocaleTimeString(),
-  });
-}
+// export async function GET() {
+//   return Response.json({
+//     currentTime: new Date().toLocaleTimeString(),
+//   });
+// }

@@ -1,7 +1,6 @@
 "use client";
-
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Meals = () => {
   const [search, setSearch] = useState("a"); // Default search letter is 'a'
@@ -28,9 +27,9 @@ const Meals = () => {
     }
   };
 
-  useEffect(() => {
-    loadMealsData();
-  }, []);
+  // useCallback(() => {
+  //   loadMealsData();
+  // }, [loadMealsData]);
 
   const handleSearch = (e) => {
     setSearch(e.target.value); // Update the search term as the user types
@@ -50,18 +49,21 @@ const Meals = () => {
           onChange={handleSearch} // Call handleSearch on input change
           value={search} // Controlled input to sync with state
         />
-        {meals ? (
+        {search?.length > 0 && search?.length < 2 ? (
           <>
             <button
               onClick={handleSearchClick}
               className="bg-orange-500 p-3 rounded-md text-white ml-3"
             >
               Search
-            </button>{" "}
+            </button>
           </>
         ) : (
           <>
-            <button className="bg-orange-500 p-3 rounded-md text-white ml-3">
+            <button
+              disabled
+              className="bg-orange-300 p-3 rounded-md text-white ml-3"
+            >
               Search
             </button>{" "}
           </>
@@ -70,7 +72,7 @@ const Meals = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-3 mt-8">
         {meals.length > 0 ? (
-          meals.map((item) => (
+          meals?.map((item) => (
             <div key={item?.idMeal} className="border-2 p-4 rounded-lg">
               <Image
                 src={item?.strMealThumb}
@@ -83,7 +85,7 @@ const Meals = () => {
             </div>
           ))
         ) : (
-          <h3>{error || "No meals found!"}</h3>
+          <h3>{error || "No meals found! ----"}</h3>
         )}
       </div>
     </div>
