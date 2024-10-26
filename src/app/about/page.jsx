@@ -1,7 +1,5 @@
 import React from "react";
 import { Style_Script } from "next/font/google";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
 
 const headLine = Style_Script({ weight: ["400"], subsets: ["latin"] });
 export const metadata = {
@@ -11,17 +9,7 @@ export const metadata = {
   description: "This is A about Page ",
 };
 
-// const gitTime = async () => {
-//   const res = await fetch("http://localhost:3000/time", {
-//     next: { revalidate: 5 },
-//   });
-//   const data = await res.json();
-//   return data.currentTime;
-// };
-
 const AboutPage = async () => {
-  // const session = await getServerSession(authOptions);
-  // console.log({ session });
   return (
     <div>
       <h2 className={` ${headLine.className} font-bold text-4xl`}>
