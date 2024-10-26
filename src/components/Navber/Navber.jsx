@@ -1,5 +1,7 @@
 "use client";
 
+import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -7,7 +9,8 @@ import { useRouter } from "next/navigation";
 const Navber = () => {
   const pathName = usePathname();
   const router = useRouter();
-
+  const session = useSession();
+  console.log(session);
   const links = [
     {
       title: "Dashboard",
@@ -35,9 +38,9 @@ const Navber = () => {
     },
   ];
 
-  if (pathName === "/dashboard") {
-    return <div className="bg-blue-600 text-white"> Dashboard Navber </div>;
-  }
+  // if (pathName === "/dashboard") {
+  //   return <div className="bg-blue-600 text-white"> Dashboard Navber </div>;
+  // }
 
   return (
     <div className="bg-[#ffffff] border shadow-md px-6 py-5 text-lg flex justify-between items-center ">
@@ -58,12 +61,38 @@ const Navber = () => {
         ))}
       </ul>
 
-      <button
-        onClick={() => router.push("/login")}
-        className="btn bg-purple-500 rounded-lg px-3 text-white py-1"
-      >
-        Login
-      </button>
+      {session?.status === "unauthenticated" ? (
+        <>
+          <button
+            onClick={() => router.push("/api/auth/signin")}
+            className="btn bg-purple-500 rounded-lg px-3 text-white py-1"
+          >
+            Login
+          </button>
+        </>
+      ) : (
+        <div className="flex items-center gap-2">
+          <div>
+            <h3> {session?.data?.user?.name}</h3>
+          </div>
+          <div>
+            <button
+              onClick={() => signOut()}
+              className="btn bg-purple-500 rounded-lg px-3 text-white py-1"
+            >
+              SignOut
+            </button>
+          </div>
+
+          <div>
+            <Link href={"/api/auth/signup"}>
+              <button className="btn bg-blue-500 rounded-lg px-3 text-white py-1">
+                SignUp
+              </button>
+            </Link>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

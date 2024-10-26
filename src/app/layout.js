@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import Navber from "@/components/Navber/Navber";
+import AuthProvider from "@/components/AuthProvider/AuthProvider";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -22,8 +23,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Navber></Navber>
-        <div className="my-4 px-6">{children}</div>
+        <AuthProvider>
+          <Navber></Navber>
+          <div className="my-4 px-6">{children}</div>
+        </AuthProvider>
       </body>
     </html>
   );

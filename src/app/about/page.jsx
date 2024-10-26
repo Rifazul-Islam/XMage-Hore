@@ -1,5 +1,7 @@
 import React from "react";
 import { Style_Script } from "next/font/google";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
 const headLine = Style_Script({ weight: ["400"], subsets: ["latin"] });
 export const metadata = {
@@ -18,6 +20,8 @@ export const metadata = {
 // };
 
 const AboutPage = async () => {
+  const session = await getServerSession(authOptions);
+  // console.log({ session });
   return (
     <div>
       <h2 className={` ${headLine.className} font-bold text-4xl`}>
