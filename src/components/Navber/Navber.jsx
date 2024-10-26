@@ -10,7 +10,7 @@ const Navber = () => {
   const pathName = usePathname();
   const router = useRouter();
   const session = useSession();
-  console.log(session);
+  // console.log("checked", session.status);
   const links = [
     {
       title: "Dashboard",

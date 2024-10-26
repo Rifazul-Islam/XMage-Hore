@@ -5,7 +5,7 @@ export const metadata = {
 };
 const BlogPage = async () => {
   const bloged = async () => {
-    const res = await fetch("http://localhost:3000/api/comments");
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/comments`);
     const data = await res.json();
     return data;
   };
